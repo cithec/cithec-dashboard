@@ -1,145 +1,119 @@
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Dashboard Visual CITHEC</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendar Cita Médica</title>
   <style>
-    body { font-family: sans-serif; background: #f9fafb; padding: 2rem; }
-    <hr>
-
-<h2 style="text-align:center; color:#334155;">📋 Pacientes con Programas Pendientes</h2>
-<div style="max-width: 900px; margin: auto; background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-  <table>
-    <thead>
-      <tr>
-        <th>Paciente</th><th>RUT</th><th>Programas Pendientes</th><th>Última Fecha</th><th>Especialidad</th>
-      </tr>
-    </thead>
-    <tbody id="tablaPendientes"></tbody>
-  </table>
-</div>
-    h1 { text-align: center; color: #0f172a; }
-    .cards { display: flex; gap: 1rem; justify-content: space-around; margin-bottom: 2rem; }
-    .card { background: white; padding: 1rem 2rem; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center; }
-    .card h2 { margin: 0; color: #2563eb; }
-    .card p { font-size: 2rem; margin: 0.5rem 0; }
-    .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    canvas { background: white; border-radius: 10px; padding: 1rem; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    hr { margin: 3rem 0; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 0.5rem; border: 1px solid #e2e8f0; }
-    th { background: #f1f5f9; text-align: left; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f8fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.7rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .msg {
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h2>Agendar Cita</h2>
+    <form id="citaForm">
+      <label for="rut">RUT del Paciente:</label>
+      <input type="text" id="rut" name="rut" required />
 
-<h1>📈 Dashboard Visual CITHEC</h1>
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" name="fecha" required />
 
-<div class="cards">
-  <div class="card">
-    <h2>Pacientes</h2>
-    <p id="pacientes">...</p>
+      <label for="hora">Hora:</label>
+      <input type="time" id="hora" name="hora" required />
+
+      <label for="sintomas">Síntomas:</label>
+      <textarea id="sintomas" name="sintomas" rows="3"></textarea>
+
+      <label for="notas">Notas:</label>
+      <textarea id="notas" name="notas" rows="3"></textarea>
+
+      <button type="submit">Enviar</button>
+      <div class="msg" id="respuesta"></div>
+    </form>
   </div>
-  <div class="card">
-    <h2>Citas Hoy</h2>
-    <p id="hoy">...</p>
-  </div>
-  <div class="card">
-    <h2>Programas Pendientes</h2>
-    <p id="totalPendientes">...</p>
-  </div>
-</div>
 
-<div class="charts">
-  <canvas id="barChart"></canvas>
-  <canvas id="pieChart"></canvas>
-  <canvas id="lineChart"></canvas>
-</div>
+  <script>
+    document.getElementById("citaForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        rut: form.rut.value.trim(),
+        fecha: form.fecha.value,
+        hora: form.hora.value,
+        sintomas: form.sintomas.value.trim(),
+        notas: form.notas.value.trim()
+      };
 
-<hr>
+      const respuestaEl = document.getElementById("respuesta");
 
-<h2 style="text-align:center; color:#334155;">📋 Pacientes con Programas Pendientes</h2>
-<div style="max-width: 900px; margin: auto; background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-  <table>
-    <thead>
-      <tr>
-        <th>Paciente</th><th>RUT</th><th>Programas Pendientes</th><th>Última Fecha</th><th>Especialidad</th>
-      </tr>
-    </thead>
-    <tbody id="tablaPendientes"></tbody>
-  </table>
-</div>
-
-<script>
-async function loadData() {
-  const res = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vRUc1uYtmVUuDD3-2CrUKcWEnF8kz93epoOZqpdOUZNhFGRNnzCuXvnQlUpUtp5qMAkQ9EUR-t98FUe/pub?output=csv");
-  const csv = await res.text();
-  const rows = csv.trim().split("\\n").map(r => r.split(","));
-  const headers = rows[0];
-  const idx = Object.fromEntries(headers.map((h,i)=>[h,i]));
-  const today = new Date().toISOString().split("T")[0];
-
-  let pacientes = 0, hoy = 0;
-  const estados = {}, especialidades = {}, fechas = {};
-
-  const pendientes = rows.slice(1).filter(r => r[idx["Estado"]] === "pending");
-
-  pacientes = rows.slice(1).filter(r => r[idx["Email"]]?.includes("@email.com")).length;
-  hoy = rows.slice(1).filter(r => r[idx["Fecha"]] === today).length;
-
-  pendientes.forEach(r => {
-    const esp = r[idx["Especialidad"]];
-    especialidades[esp] = (especialidades[esp]||0) + 1;
-    const estado = r[idx["Estado"]];
-    estados[estado] = (estados[estado]||0) + 1;
-    const fecha = r[idx["Fecha"]];
-    fechas[fecha] = (fechas[fecha]||0) + 1;
-  });
-
-  document.getElementById("pacientes").textContent = pacientes;
-  document.getElementById("hoy").textContent = hoy;
-  document.getElementById("totalPendientes").textContent = pendientes.length;
-
-  new Chart(document.getElementById("barChart"), {
-    type: "bar",
-    data: { labels: Object.keys(especialidades), datasets:[{label:"Citas por Especialidad",data:Object.values(especialidades),backgroundColor:"#60a5fa"}] }
-  });
-  new Chart(document.getElementById("pieChart"), {
-    type: "pie",
-    data: { labels:Object.keys(estados), datasets:[{label:"Estados de Cita",data:Object.values(estados),backgroundColor:["#facc15","#3b82f6","#10b981","#f87171"]}] }
-  });
-  const fechasOrden = Object.keys(fechas).sort();
-  new Chart(document.getElementById("lineChart"), {
-    type: "line",
-    data: { labels: fechasOrden, datasets:[{label:"Citas por Fecha",data:fechasOrden.map(f=>fechas[f]),borderColor:"#6366f1",backgroundColor:"rgba(99,102,241,0.2)",fill:true,tension:0.3}] }
-  });
-
-  mostrarPendientes(pendientes, idx);
-}
-
-function mostrarPendientes(pendientes, idx) {
-  const tabla = document.getElementById("tablaPendientes");
-  if (pendientes.length === 0) {
-    tabla.innerHTML = "<tr><td colspan='5' style='text-align:center;color:#16a34a;padding:1rem;'>✨ Todos los pacientes están al día. ¡No hay programas pendientes!</td></tr>";
-    return;
-  }
-  const mapa = {};
-  pendientes.forEach(r => {
-    const rut = r[idx["RUT"]] || r[idx["Paciente"]];
-    const nombre = r[idx["Paciente"]];
-    const fecha = r[idx["Fecha"]];
-    const esp = r[idx["Especialidad"]];
-    if (!mapa[rut]) mapa[rut] = {nombre,rut,count:1,ultima:fecha,esp};
-    else { mapa[rut].count++; if (fecha > mapa[rut].ultima){mapa[rut].ultima=fecha; mapa[rut].esp=esp;} }
-  });
-  tabla.innerHTML = Object.values(mapa).map(p => `
-    <tr><td>${p.nombre}</td><td>${p.rut}</td><td>${p.count}</td><td>${p.ultima}</td><td>${p.esp}</td></tr>
-  `).join("");
-}
-
-loadData();
-</script>
-
+      try {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbxeGYIEyOBy5Eg4aHhOtA8uh__shG-KhiT706YLqiHUSv7K4sLLI8ijWNSGT1jgLBkakQ/exec", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/json" }
+        });
+        const texto = await res.text();
+        respuestaEl.textContent = texto;
+        respuestaEl.style.color = texto.includes("RECHAZADA") ? "red" : "green";
+        form.reset();
+      } catch (error) {
+        respuestaEl.textContent = "Error al enviar datos.";
+        respuestaEl.style.color = "red";
+      }
+    });
+  </script>
 </body>
 </html>
