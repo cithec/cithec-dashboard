@@ -1,119 +1,22 @@
-
 <!DOCTYPE html>
-<html lang="="es">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agendar Cita Médica</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f8fa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .container {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      max-width: 400px;
-      width: 100%;
-    }
-    h2 {
-      text-align: center;
-      color: #2c3e50;
-    }
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-      color: #333;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.3rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      margin-top: 1.5rem;
-      width: 100%;
-      padding: 0.7rem;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .msg {
-      text-align: center;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-  </style>
+  <title>CITHEC Dashboard</title>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <div class="container">
-    <h2>Agendar Cita</h2>
-    <form id="citaForm">
-      <label for="rut">RUT del Paciente:</label>
-      <input type="text" id="rut" name="rut" required />
-
-      <label for="fecha">Fecha:</label>
-      <input type="date" id="fecha" name="fecha" required />
-
-      <label for="hora">Hora:</label>
-      <input type="time" id="hora" name="hora" required />
-
-      <label for="sintomas">Síntomas:</label>
-      <textarea id="sintomas" name="sintomas" rows="3"></textarea>
-
-      <label for="notas">Notas:</label>
-      <textarea id="notas" name="notas" rows="3"></textarea>
-
-      <button type="submit">Enviar</button>
-      <div class="msg" id="respuesta"></div>
-    </form>
+  <div id="root">
+    <h1>Dashboard CITHEC</h1>
+    <p>Este es un ejemplo de interfaz completa (Dashboard, Pacientes, Citas...)</p>
+    <ul>
+      <li>📋 Citas del día</li>
+      <li>👩‍⚕️ Pacientes</li>
+      <li>📊 Programas pendientes</li>
+      <li>✅ Confirmaciones</li>
+    </ul>
   </div>
-
-  <script>
-    document.getElementById("citaForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = {
-        rut: form.rut.value.trim(),
-        fecha: form.fecha.value,
-        hora: form.hora.value,
-        sintomas: form.sintomas.value.trim(),
-        notas: form.notas.value.trim()
-      };
-
-      const respuestaEl = document.getElementById("respuesta");
-
-      try {
-        const res = await fetch("https://script.google.com/macros/s/AKfycbxeGYIEyOBy5Eg4aHhOtA8uh__shG-KhiT706YLqiHUSv7K4sLLI8ijWNSGT1jgLBkakQ/exec", {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: { "Content-Type": "application/json" }
-        });
-        const texto = await res.text();
-        respuestaEl.textContent = texto;
-        respuestaEl.style.color = texto.includes("RECHAZADA") ? "red" : "green";
-        form.reset();
-      } catch (error) {
-        respuestaEl.textContent = "Error al enviar datos.";
-        respuestaEl.style.color = "red";
-      }
-    });
-  </script>
+  <script src="assets/app.js"></script>
 </body>
 </html>
