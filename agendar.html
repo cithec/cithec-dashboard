@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CITHEC Dashboard</title>
+  <title>Agendar Cita - CITHEC</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
@@ -52,30 +51,60 @@
   </div>
   <span style="color:white; font-weight:bold;">CITHEC</span>
 </div>
-  <a href="agendar.html" style="
-  display: inline-block;
-  margin: 1rem 0;
-  padding: 0.6rem 1.2rem;
-  background-color: #2563eb;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
+<div style="
+  background-color: #1d4ed8;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-family: sans-serif;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 ">
-🗓️ Agendar Cita
-</a>
-  <div id="root">
-    <h1>Dashboard CITHEC</h1>
-    <p>Este es un ejemplo de interfaz completa (Dashboard, Pacientes, Citas...)</p>
-    <ul>
-      <li>📅 Citas del día</li>
-      <li>👥 Pacientes</li>
-      <li>📊 Programas pendientes</li>
-      <li>✅ Confirmaciones</li>
-    </ul>
+  <span style="color:white; font-weight:bold; font-size:1.2rem;">CITHEC</span>
+  <a href="agendar.html" style="
+    background-color: white;
+    color: #1d4ed8;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  ">🗓️ Agendar Cita</a>
+</div>
+  <div class="container">
+    <h1>Agendar Cita</h1>
+    <form id="citaForm">
+      <input type="text" name="rut" placeholder="RUT del paciente" required />
+      <input type="date" name="fecha" required />
+      <input type="time" name="hora" required />
+      <button type="submit">Agendar</button>
+    </form>
+    <div id="mensaje"></div>
   </div>
-  <script src="assets/app.js"></script>
+  <script>
+    document.getElementById('citaForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        rut: form.rut.value,
+        fecha: form.fecha.value,
+        hora: form.hora.value
+      };
+
+      fetch('https://script.google.com/macros/s/AKfycbxeGYIEyOBy5Eg4aHhOtA8uh__shG-KhiT706YLqiHUSv7K4sLLI8ijWNSGT1jgLBkakQ/exec', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(res => res.text())
+      .then(msg => {
+        document.getElementById('mensaje').innerText = msg;
+        form.reset();
+      })
+      .catch(err => {
+        document.getElementById('mensaje').innerText = 'Error al enviar datos';
+        console.error(err);
+      });
+    });
+  </script>
 </body>
 </html>
