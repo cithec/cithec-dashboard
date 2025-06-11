@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dra. Patricia Cruz Rocha</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md p-4">
+      <div class="mb-6">
+        <h1 class="text-xl font-bold text-blue-700">Dra. Patricia Cruz Rocha</h1>
+        <p class="text-sm text-gray-500">Centro Integral de Heridas Crónicas</p>
+      </div>
+      <nav>
+        <ul class="space-y-2">
+          <li><button onclick="showForm('dashboard')" class="text-left w-full text-gray-700 hover:text-blue-700">Dashboard</button></li>
+          <li><button onclick="showForm('formCita')" class="text-left w-full text-gray-700 hover:text-blue-700">Citas</button></li>
+          <li><button onclick="showForm('formPaciente')" class="text-left w-full text-gray-700 hover:text-blue-700">Pacientes</button></li>
+          <li><button onclick="showForm('formMedico')" class="text-left w-full text-gray-700 hover:text-blue-700">Médicos</button></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 p-6 overflow-auto">
+      <div id="dashboard">
+        <h2 class="text-2xl font-bold text-blue-800">CITHEC</h2>
+        <p class="text-gray-600 mb-4">Resumen general del sistema de citas médicas</p>
+        <!-- Aquí irían estadísticas -->
+      </div>
+
+      <div id="formCita" class="hidden">
+        <h2 class="text-xl font-semibold mb-2">Nueva Cita</h2>
+        <form id="citaForm" class="space-y-3">
+          <input name="rut" placeholder="RUT" class="w-full border p-2 rounded" required />
+          <input name="nombre" placeholder="Nombre Paciente" class="w-full border p-2 rounded" required />
+          <input name="especialidad" placeholder="Especialidad" class="w-full border p-2 rounded" />
+          <input name="fecha" type="date" class="w-full border p-2 rounded" required />
+          <input name="hora" type="time" class="w-full border p-2 rounded" required />
+          <textarea name="sintomas" placeholder="Síntomas" class="w-full border p-2 rounded"></textarea>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Guardar Cita</button>
+        </form>
+      </div>
+
+      <div id="formPaciente" class="hidden">
+        <h2 class="text-xl font-semibold mb-2">Nuevo Paciente</h2>
+        <form class="space-y-3">
+          <input placeholder="RUT" class="w-full border p-2 rounded" />
+          <input placeholder="Nombre" class="w-full border p-2 rounded" />
+          <input placeholder="Teléfono" class="w-full border p-2 rounded" />
+          <input placeholder="Fecha de nacimiento" type="date" class="w-full border p-2 rounded" />
+          <textarea placeholder="Historial médico" class="w-full border p-2 rounded"></textarea>
+        </form>
+      </div>
+
+      <div id="formMedico" class="hidden">
+        <h2 class="text-xl font-semibold mb-2">Nuevo Médico</h2>
+        <form class="space-y-3">
+          <input placeholder="RUT" class="w-full border p-2 rounded" />
+          <input placeholder="Nombre" class="w-full border p-2 rounded" />
+          <input placeholder="Especialidad" class="w-full border p-2 rounded" />
+          <input placeholder="Horario" class="w-full border p-2 rounded" />
+        </form>
+      </div>
+    </main>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
