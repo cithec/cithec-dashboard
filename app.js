@@ -1,0 +1,1 @@
+// Aquí irá el comportamiento futuro del dashboard (opcional)
