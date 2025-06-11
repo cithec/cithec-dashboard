@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CITHEC Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="app.js" defer></script>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-white shadow-lg p-4">
+        <h1 class="text-xl font-bold mb-6">🏥 CITHEC</h1>
+        <nav class="space-y-4">
+          <a href="#" class="block text-blue-600 font-semibold">Dashboard</a>
+          <a href="citas.html" class="block">📅 Citas</a>
+          <a href="agendar.html" class="block">➕ Nueva Cita</a>
+          <a href="pacientes.html" class="block">🧑 Pacientes</a>
+          <a href="medicos.html" class="block">👨‍⚕️ Médicos</a>
+          <a href="#" class="block">⚙️ Configuración</a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-6">
+        <h2 class="text-3xl font-bold mb-4">Dashboard</h2>
+
+        <!-- Estadísticas -->
+        <div class="grid grid-cols-4 gap-4 mb-6">
+          <div class="bg-white shadow rounded-xl p-4">
+            <p class="text-sm text-gray-500">Citas de Hoy</p>
+            <p class="text-2xl font-bold text-blue-600" id="citas-hoy">0</p>
+          </div>
+          <div class="bg-white shadow rounded-xl p-4">
+            <p class="text-sm text-gray-500">Total Pacientes</p>
+            <p class="text-2xl font-bold text-green-600" id="total-pacientes">3</p>
+          </div>
+          <div class="bg-white shadow rounded-xl p-4">
+            <p class="text-sm text-gray-500">Citas Pendientes</p>
+            <p class="text-2xl font-bold text-orange-600" id="citas-pendientes">1</p>
+          </div>
+          <div class="bg-white shadow rounded-xl p-4">
+            <p class="text-sm text-gray-500">Citas Completadas</p>
+            <p class="text-2xl font-bold text-purple-600" id="citas-completadas">1</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
