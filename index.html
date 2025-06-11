@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CITHEC Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex bg-gray-100 min-h-screen">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white shadow-lg h-screen fixed">
+    <div class="p-6 border-b border-gray-200">
+      <h1 class="text-xl font-bold text-blue-600">Dra Patricia Cruz Rocha</h1>
+      <p class="text-sm text-gray-500">Centro Integral de Heridas Crónicas</p>
+    </div>
+    <nav class="mt-4 px-4 space-y-2">
+      <button onclick="showSection('dashboard')" class="w-full text-left px-3 py-2 rounded hover:bg-blue-100">CITHEC</button>
+      <button onclick="showSection('form-citas')" class="w-full text-left px-3 py-2 rounded hover:bg-blue-100">Citas</button>
+      <button onclick="showSection('form-pacientes')" class="w-full text-left px-3 py-2 rounded hover:bg-blue-100">Pacientes</button>
+      <button onclick="showSection('form-medicos')" class="w-full text-left px-3 py-2 rounded hover:bg-blue-100">Médicos</button>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="ml-64 flex-1 p-8">
+    <section id="dashboard">
+      <h2 class="text-2xl font-bold text-gray-900">CITHEC</h2>
+      <p class="text-gray-600">Centro Integral de Heridas Crónicas</p>
+      <div class="mt-4 p-4 border rounded bg-white shadow">Resumen general del sistema de citas médicas</div>
+    </section>
+
+    <section id="form-citas" class="hidden">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900">Formulario de Citas</h2>
+      <form class="bg-white p-4 rounded shadow space-y-4">
+        <input class="w-full border p-2 rounded" placeholder="RUT del paciente" required/>
+        <input class="w-full border p-2 rounded" placeholder="Especialidad" required/>
+        <input type="date" class="w-full border p-2 rounded" required/>
+        <input type="time" class="w-full border p-2 rounded" required/>
+        <textarea class="w-full border p-2 rounded" placeholder="Síntomas" required></textarea>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded">Enviar</button>
+      </form>
+    </section>
+
+    <section id="form-pacientes" class="hidden">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900">Formulario de Pacientes</h2>
+      <form class="bg-white p-4 rounded shadow space-y-4">
+        <input class="w-full border p-2 rounded" placeholder="RUT"/>
+        <input class="w-full border p-2 rounded" placeholder="Nombre completo"/>
+        <input class="w-full border p-2 rounded" placeholder="Teléfono"/>
+        <input class="w-full border p-2 rounded" placeholder="Dirección"/>
+        <textarea class="w-full border p-2 rounded" placeholder="Historial Médico"></textarea>
+        <button class="bg-green-600 text-white px-4 py-2 rounded">Guardar</button>
+      </form>
+    </section>
+
+    <section id="form-medicos" class="hidden">
+      <h2 class="text-2xl font-bold mb-4 text-gray-900">Formulario de Médicos</h2>
+      <form class="bg-white p-4 rounded shadow space-y-4">
+        <input class="w-full border p-2 rounded" placeholder="Nombre"/>
+        <input class="w-full border p-2 rounded" placeholder="Especialidad"/>
+        <input class="w-full border p-2 rounded" placeholder="Email"/>
+        <button class="bg-purple-600 text-white px-4 py-2 rounded">Registrar</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
