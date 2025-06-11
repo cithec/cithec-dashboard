@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.card {
+  background: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 0.375rem;
+}
+
+.nav-link {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  text-align: left;
+  border-radius: 0.375rem;
+  color: #1f2937;
+  background: transparent;
+}
+
+.nav-link.active, .nav-link:hover {
+  background-color: #dbeafe;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.hidden {
+  display: none;
+}
