@@ -1,1 +1,0 @@
-// Lógica para conectar a Google Sheets y manejar vistas dinámicas
