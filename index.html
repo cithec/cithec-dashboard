@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dra. Patricia Cruz Rocha</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-lg p-6 space-y-4">
+      <div>
+        <h1 class="text-xl font-bold text-blue-700">CITHEC</h1>
+        <p class="text-sm text-gray-600">Centro Integral de Heridas Crónicas</p>
+      </div>
+      <nav class="space-y-2">
+        <button onclick="showView('dashboard')" class="block w-full text-left text-gray-700 hover:text-blue-600">Dashboard</button>
+        <button onclick="showView('nueva-cita')" class="block w-full text-left text-gray-700 hover:text-blue-600">Nueva Cita</button>
+        <button onclick="showView('pacientes')" class="block w-full text-left text-gray-700 hover:text-blue-600">Pacientes</button>
+        <button onclick="showView('medicos')" class="block w-full text-left text-gray-700 hover:text-blue-600">Médicos</button>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+      <div id="dashboard" class="view">
+        <h2 class="text-2xl font-bold text-gray-800">CITHEC</h2>
+        <p class="text-gray-600 mb-6">Resumen general del sistema de citas médicas</p>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-white p-4 rounded-lg shadow text-center">
+            <p class="text-gray-600">Citas Hoy</p>
+            <p class="text-3xl font-bold text-blue-600">5</p>
+            <p class="text-sm text-green-500 mt-1">+12% mes anterior</p>
+          </div>
+          <div class="bg-white p-4 rounded-lg shadow text-center">
+            <p class="text-gray-600">Programas Pendientes</p>
+            <p class="text-3xl font-bold text-red-600">3</p>
+            <p class="text-sm text-red-500 mt-1">-8% mes anterior</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="nueva-cita" class="view hidden">
+        <h2 class="text-xl font-bold mb-4 text-gray-800">Formulario Nueva Cita</h2>
+        <form class="space-y-4">
+          <input type="text" placeholder="Nombre del Paciente" class="w-full p-2 border rounded" />
+          <input type="text" placeholder="RUT" class="w-full p-2 border rounded" />
+          <input type="date" class="w-full p-2 border rounded" />
+          <input type="time" class="w-full p-2 border rounded" />
+          <textarea placeholder="Notas adicionales..." class="w-full p-2 border rounded"></textarea>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Guardar</button>
+        </form>
+      </div>
+
+      <div id="pacientes" class="view hidden">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Listado de Pacientes</h2>
+        <p class="text-gray-600">Aquí aparecerán los pacientes registrados.</p>
+      </div>
+
+      <div id="medicos" class="view hidden">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Listado de Médicos</h2>
+        <p class="text-gray-600">Actualmente solo un médico disponible.</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function showView(id) {
+      document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
