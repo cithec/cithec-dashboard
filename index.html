@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CITHEC - Centro de Heridas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Dra. Patricia Cruz Rocha</h2>
+    <p>Centro Integral de Heridas Crónicas</p>
+    <nav>
+      <ul>
+        <li><button onclick="showView('dashboard')">CITHEC</button></li>
+        <li><button onclick="showView('citas')">Citas</button></li>
+        <li><button onclick="showView('pacientes')">Pacientes</button></li>
+        <li><button onclick="showView('programas')">Programas</button></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main">
+    <div id="dashboard" class="view active">
+      <h1>CITHEC</h1>
+      <h2>Centro Integral de Heridas Crónicas</h2>
+      <p>Resumen general del sistema de citas médicas</p>
+      <div class="cards">
+        <div class="card">
+          <h3>12</h3>
+          <p>Citas hoy</p>
+          <span>+20% mes pasado</span>
+        </div>
+        <div class="card">
+          <h3>8</h3>
+          <p>Programas pendientes</p>
+          <span>-10% mes pasado</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="citas" class="view">
+      <h2>Formulario Nueva Cita</h2>
+      <form>
+        <label>Nombre del paciente</label><input type="text" />
+        <label>Fecha</label><input type="date" />
+        <label>Hora</label><input type="time" />
+        <label>Motivo</label><textarea></textarea>
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+
+    <div id="pacientes" class="view">
+      <h2>Formulario Paciente</h2>
+      <form>
+        <label>Nombre completo</label><input type="text" />
+        <label>RUT</label><input type="text" />
+        <label>Edad</label><input type="number" />
+        <label>Teléfono</label><input type="tel" />
+        <button type="submit">Registrar</button>
+      </form>
+    </div>
+
+    <div id="programas" class="view">
+      <h2>Formulario Programa Médico</h2>
+      <form>
+        <label>Nombre del programa</label><input type="text" />
+        <label>Fecha inicio</label><input type="date" />
+        <label>Notas</label><textarea></textarea>
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
