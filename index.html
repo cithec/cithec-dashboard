@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dra. Patricia Cruz Rocha</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Dra. Patricia Cruz Rocha</h2>
+    <ul>
+      <li onclick="showView('dashboard')">CITHEC</li>
+      <li onclick="showView('appointments')">Citas</li>
+      <li onclick="showView('patients')">Pacientes</li>
+      <li onclick="showView('programs')">Programas</li>
+    </ul>
+  </div>
+  <div class="main">
+    <div id="dashboard" class="view active">
+      <h1>CITHEC</h1>
+      <h2>Centro Integral de Heridas Crónicas</h2>
+      <div class="card">
+        <p>Resumen general del sistema de citas médicas</p>
+        <div class="stats">
+          <div><strong>12</strong><br>Citas hoy<br><span class="small">+20% mes pasado</span></div>
+          <div><strong>8</strong><br>Programas pendientes<br><span class="small">-10% mes pasado</span></div>
+        </div>
+      </div>
+    </div>
+    <div id="appointments" class="view"><h2>Formulario de Citas</h2></div>
+    <div id="patients" class="view"><h2>Formulario de Pacientes</h2></div>
+    <div id="programs" class="view"><h2>Programas Pendientes</h2></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
