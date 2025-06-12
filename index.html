@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CITHEC - Panel Principal</title>
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <div class="flex h-screen">
+        <aside class="w-64 bg-white shadow-md p-4">
+            <h1 class="text-xl font-bold text-blue-600 mb-6">Dra. Patricia Cruz Rocha</h1>
+            <nav class="space-y-2">
+                <button class="block w-full text-left p-2 hover:bg-blue-100 rounded submenu-toggle" data-target="dashboard">CITHEC</button>
+                <button class="block w-full text-left p-2 hover:bg-blue-100 rounded submenu-toggle" data-target="appointments">Citas</button>
+                <button class="block w-full text-left p-2 hover:bg-blue-100 rounded submenu-toggle" data-target="patients">Pacientes</button>
+                <button class="block w-full text-left p-2 hover:bg-blue-100 rounded submenu-toggle" data-target="doctors">Médico</button>
+            </nav>
+        </aside>
+        <main class="flex-1 p-6 overflow-y-auto">
+            <section id="dashboard" class="hidden">
+                <h2 class="text-2xl font-semibold">CITHEC</h2>
+                <p class="text-sm text-gray-500 mb-4">Centro Integral de Heridas Crónicas</p>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                    <p class="text-gray-800 font-medium">Resumen general del sistema de citas médicas</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-white p-4 shadow rounded-lg">
+                        <p class="text-sm text-gray-500">Citas de Hoy</p>
+                        <p class="text-2xl font-bold text-blue-600">12</p>
+                        <p class="text-xs text-gray-400">+5% respecto al mes pasado</p>
+                    </div>
+                    <div class="bg-white p-4 shadow rounded-lg">
+                        <p class="text-sm text-gray-500">Pacientes</p>
+                        <p class="text-2xl font-bold text-green-600">85</p>
+                        <p class="text-xs text-gray-400">+12% respecto al mes pasado</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="appointments" class="hidden">
+                <h2 class="text-xl font-semibold mb-2">Nueva Cita</h2>
+                <p class="text-sm text-gray-600 mb-4">Formulario de ingreso de nueva cita</p>
+                <!-- Formulario de cita aquí -->
+            </section>
+
+            <section id="patients" class="hidden">
+                <h2 class="text-xl font-semibold mb-2">Pacientes</h2>
+                <p class="text-sm text-gray-600 mb-4">Formulario de ingreso de pacientes</p>
+                <!-- Formulario de pacientes aquí -->
+            </section>
+
+            <section id="doctors" class="hidden">
+                <h2 class="text-xl font-semibold mb-2">Médico</h2>
+                <p class="text-sm text-gray-600 mb-4">Información de único médico disponible</p>
+                <!-- Información médica aquí -->
+            </section>
+        </main>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
